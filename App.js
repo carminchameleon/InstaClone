@@ -1,19 +1,52 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { Asset } from "expo-asset";
+import Stack from "./Navigation/Stack";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+  const [isReady, setIsReady] = useState(false);
+
+  const cacheFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
+  const cacheImages = (images) =>
+    images.map((image) => {
+      if (typeof image === "string") {
+        return Image.prefetch(image);
+      } else {
+        return Asset.fromModule(image).downloadAsync();
+      }
+    });
+  const LoadAssets = () => {
+    const images = cacheImages([require("./assets/logo_text.png")]);
+    const fonts = cacheFonts([Ionicons.font]);
+    return Promise.all([...images, ...fonts]);
+  };
+
+  const onFinish = () => {
+    setIsReady(true);
+  };
+
+  return isReady ? (
+    <NavigationContainer>
+      <Stack />
+    </NavigationContainer>
+  ) : (
+    <AppLoading
+      startAsync={LoadAssets}
+      onFinish={onFinish}
+      onError={console.error}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
