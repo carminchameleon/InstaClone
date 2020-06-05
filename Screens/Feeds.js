@@ -1,13 +1,21 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { BLACK_COLOR, GRAY_COLOR, BORDER_COLOR } from "../constants/Colors";
-import FeedTopNav from "../Components/FeedTopNav";
+import { View } from "react-native";
+import FeedTopNav from "../Components/Feeds/FeedTopNav";
+import Story from "../Components/Feeds/Story";
+import Post from "../Components/Feeds/Post";
+import styled from "styled-components";
 
 export default ({ navigation }) => {
   return (
-    <View>
+    <Container>
       <FeedTopNav />
-    </View>
+      <Story />
+      <Post />
+    </Container>
   );
 };
+
+const Container = styled.View`
+  flex: 1;
+  background-color: white;
+`;
