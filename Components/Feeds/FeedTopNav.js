@@ -12,16 +12,20 @@ import {
 import { Feather, Entypo } from "@expo/vector-icons";
 import Constants from "expo-constants";
 const statusBarHeight = Constants.statusBarHeight;
-import { theme } from "../constants/theme";
-import logo from "../assets/logo_text.png";
+import { theme } from "../theme";
+import logo from "../../assets/logo_text.png";
 
 export default () => {
   return (
     <SafeZone>
       <Container isPlatform={Platform.OS === "android"}>
-        <Feather name="camera" size={24} color="black" />
+        <ActionButton onPress={() => alert("hello")}>
+          <Feather name="camera" size={24} color="black" />
+        </ActionButton>
         <LogoImage source={logo} />
-        <Entypo name="direction" size={24} color="black" />
+        <ActionButton onPress={() => alert("hello")}>
+          <Entypo name="direction" size={24} color="black" />
+        </ActionButton>
       </Container>
     </SafeZone>
   );
@@ -48,4 +52,9 @@ const LogoImage = styled.Image.attrs({
   resizeMode: "contain",
 })`
   height: 30px;
+`;
+
+const ActionButton = styled.TouchableWithoutFeedback`
+  justify-content: center;
+  align-items: center;
 `;

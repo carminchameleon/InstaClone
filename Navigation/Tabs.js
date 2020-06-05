@@ -11,7 +11,7 @@ import {
   MaterialIcons,
   AntDesign,
 } from "@expo/vector-icons";
-import { theme } from "../constants/theme";
+import { theme } from "../Components/theme";
 
 const Tabs = createBottomTabNavigator();
 
