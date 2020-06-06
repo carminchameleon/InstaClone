@@ -5,6 +5,9 @@ import Search from "../Screens/Search";
 import Upload from "../Screens/Upload";
 import Activity from "../Screens/Activity";
 import Profile from "../Screens/Profile";
+import Settings from "../Screens/Settings";
+import ProfileStack from "./Stack";
+
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -17,7 +20,7 @@ const Tabs = createBottomTabNavigator();
 
 const getHeaderName = (route) => route?.state?.routeNames[route.state.index];
 
-export default ({ navigation, route }) => {
+const RootStacks = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleModalVisible = () => {
@@ -34,8 +37,10 @@ export default ({ navigation, route }) => {
       },
     });
   }, [route]);
+
   return (
     <Tabs.Navigator
+      initialRouteName="Feeds"
       tabBarOptions={{
         activeTintColor: theme.BLACK_COLOR,
         inactiveTintColor: theme.BLACK_COLOR,
@@ -100,7 +105,7 @@ export default ({ navigation, route }) => {
       />
       <Tabs.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileStacks}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialIcons
@@ -114,3 +119,5 @@ export default ({ navigation, route }) => {
     </Tabs.Navigator>
   );
 };
+
+export default RootStacks;

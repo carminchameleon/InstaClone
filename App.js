@@ -4,8 +4,18 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+
 import { Asset } from "expo-asset";
-import Stack from "./Navigation/Stack";
+import RootStacks from "./Navigation/Stack";
+////////////////////////////////
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import Settings from "./Screens/Settings";
+import Feeds from "./Screens/Feeds";
+import Profile from "./Screens/Profile";
+import Search from "./Screens/Search";
+
+import { createStackNavigator } from "@react-navigation/stack";
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -31,7 +41,7 @@ export default function App() {
 
   return isReady ? (
     <NavigationContainer>
-      <Stack />
+      <MainTabsScreen />
     </NavigationContainer>
   ) : (
     <AppLoading
@@ -50,3 +60,39 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+///////////////////////
+
+const Tabs = createBottomTabNavigator();
+
+const MainTabsScreen = () => (
+  <Tabs.Navigator mode="modal">
+    <Tabs.Screen name="Feeds" component={Feeds} />
+    <Tabs.Screen name="Search" component={Search} />
+    <Tabs.Screen name="Profile" component={StackScreens} />
+  </Tabs.Navigator>
+);
+
+const Stacks = createStackNavigator();
+
+const StackScreens = () => (
+  <Stacks.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#fafafa",
+        borderBottomColor: "blue",
+      },
+      headerTintColor: "rgb(38, 38, 38)",
+      headerBackTitleVisible: false,
+      // 이전의 타이틀을 보여줄 것인지
+    }}
+  >
+    <Stacks.Screen
+      name="Profile"
+      component={Profile}
+      options={{ headerShown: false }}
+    />
+    <Stacks.Screen name="Search" component={Search} />
+    <Stacks.Screen name="Settings" component={Settings} />
+  </Stacks.Navigator>
+);

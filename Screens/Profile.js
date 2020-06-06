@@ -17,13 +17,17 @@ import ProfilePhotos from "../Components/Profile/ProfilePhotos";
 import Constants from "expo-constants";
 const statusBarHeight = Constants.statusBarHeight;
 
-export default () => (
-  <Container>
-    <TopMenu />
-    <ProfileInfo />
-    <ProfilePhotos />
-  </Container>
-);
+export default ({ navigation }) => {
+  // console.log(navigation);
+
+  return (
+    <Container>
+      <TopMenu navigation={navigation} />
+      <ProfileInfo />
+      <ProfilePhotos />
+    </Container>
+  );
+};
 
 const Container = styled.View`
   flex: 1;
