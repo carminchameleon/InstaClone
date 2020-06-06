@@ -17,7 +17,7 @@ import logo from "../../assets/logo_text.png";
 
 export default () => {
   return (
-    <SafeZone>
+    <SafeAreaView>
       <Container isPlatform={Platform.OS === "android"}>
         <ActionButton onPress={() => alert("hello")}>
           <Feather name="camera" size={24} color="black" />
@@ -27,17 +27,14 @@ export default () => {
           <Entypo name="direction" size={24} color="black" />
         </ActionButton>
       </Container>
-    </SafeZone>
+    </SafeAreaView>
   );
 };
 
-const SafeZone = styled.SafeAreaView`
-  background-color: ${theme.GRAY_COLOR};
-`;
 const Container = styled.View`
   display: flex;
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 6}px` : "8px"};
+    props.isPlatform ? `${statusBarHeight + 6}px` : "10px"};
   align-items: center;
   background-color: ${theme.GRAY_COLOR};
   border-bottom-color: ${theme.BORDER_COLOR};

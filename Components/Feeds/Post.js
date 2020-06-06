@@ -1,5 +1,14 @@
-import React from "react";
-import { View, Text, Button, Image, Dimensions } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  Dimensions,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import axios from "axios";
 import styled from "styled-components";
 import {
   MaterialCommunityIcons,
@@ -18,22 +27,55 @@ import { symbol } from "prop-types";
 const { width, height } = Dimensions.get("screen");
 
 export default () => {
-  console.log(width);
-  return (
-    <Container>
+  const [page, setpage] = useState(1);
+  const [data, setData] = useState([]);
+  const [loading, isLoading] = useState(false);
+
+  async function getFeedDatas() {
+    try {
+      // fetch data from a url endpoint
+      const feeddata = await axios.get(
+        `https://my-json-server.typicode.com/hong-dev/json_server/posts?_limit=5&_page=${page}`
+      );
+      setData(data.concat(feeddata["data"]));
+      isLoading(false);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  useEffect(() => {
+    getFeedDatas();
+    isLoading(true);
+  }, []);
+
+  const handleLoadMore = () => {
+    setpage(page + 1);
+    getFeedDatas();
+  };
+
+  const renderFooter = () => {
+    return loading ? (
+      <Loader>
+        <ActivityIndicator size="large" />
+      </Loader>
+    ) : null;
+  };
+
+  const renderItem = ({ item }) => {
+    return (
       <PostContainer>
         <InfoContainer>
           <InfoWrapper>
             <UserImgBox>
               <UserImg
                 source={{
-                  url:
-                    "https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/s150x150/98419098_241835093901173_7720055465173843968_n.jpg?_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_ohc=wYWpEV2YUbcAX-nXpa6&oh=96d4a40c90f5ff375757854fdc008c74&oe=5F027A2C",
+                  url: `${item.userImg}`,
                 }}
               ></UserImg>
             </UserImgBox>
             <UserIdBox>
-              <UserId>Carmin</UserId>
+              <UserId>{item.userId}</UserId>
             </UserIdBox>
           </InfoWrapper>
           <SettingBox>
@@ -47,8 +89,7 @@ export default () => {
         <ImgContainer>
           <PostImg
             source={{
-              url:
-                "https://images.unsplash.com/photo-1496208612508-eb52fba7d94e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+              url: `${item.postImg}`,
             }}
           ></PostImg>
         </ImgContainer>
@@ -61,20 +102,39 @@ export default () => {
             </LeftIconBox>
             <FontAwesome name="bookmark-o" size={30} color="black" />
           </IconContainer>
+          <Likes>{item.likes} likes</Likes>
+          <TextContainer>
+            <UserId>{item.userId}</UserId>
+            <PostText>{item.postContents}</PostText>
+          </TextContainer>
+          <Comments>View all {item.comments} comments</Comments>
         </ContentsContainer>
       </PostContainer>
+    );
+  };
+
+  return (
+    <Container>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+        removeClippedSubviews={true}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0}
+        ListFooterComponent={renderFooter}
+      />
     </Container>
   );
 };
 
 const Container = styled.View`
-  border: 1px solid black;
   flex: 1;
 `;
 
 const PostContainer = styled.View`
   width: 100%;
-  height: 90%;
+  height: 600px;
   display: flex;
 `;
 
@@ -103,7 +163,7 @@ const UserImg = styled.Image.attrs({
 })`
   width: 100%;
   height: 100%;
-  border-radius: 50;
+  border-radius: 20px;
 `;
 
 const UserIdBox = styled.View`
@@ -112,13 +172,12 @@ const UserIdBox = styled.View`
 
 const UserId = styled.Text`
   font-weight: bold;
-  font-size: 16px;
 `;
 
 const SettingBox = styled.View``;
 
 const ImgContainer = styled.View`
-  height: 75%;
+  height: 414px;
 `;
 
 const PostImg = styled.Image.attrs({
@@ -127,14 +186,15 @@ const PostImg = styled.Image.attrs({
   width: 100%;
   height: 100%;
 `;
-const ContentsContainer = styled.View``;
+const ContentsContainer = styled.View`
+  padding: 0 10px;
+`;
 
 const IconContainer = styled.View`
   height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
   align-items: center;
 `;
 
@@ -143,4 +203,31 @@ const LeftIconBox = styled.View`
   flex-direction: row;
   width: 27%;
   justify-content: space-between;
+`;
+
+const LikeContainer = styled.View``;
+
+const Likes = styled.Text`
+  font-weight: bold;
+`;
+
+const TextContainer = styled.View`
+  margin-top: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const PostText = styled.Text`
+  margin-left: 3px;
+`;
+
+const Comments = styled.Text`
+  margin-top: 3px;
+  color: gray;
+`;
+
+const Loader = styled.View`
+  margin-top: 10px;
+  align-items: center;
 `;

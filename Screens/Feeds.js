@@ -17,5 +17,5 @@ export default ({ navigation }) => {
 
 const Container = styled.View`
   flex: 1;
-  background-color: white;
+  background-color: #fafafa;
 `;
