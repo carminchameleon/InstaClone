@@ -122,8 +122,8 @@ const InvisibleBox = styled.View`
 const Photo = styled.Image.attrs({
   resizeMode: "cover",
 })`
-  height: ${(props) => props.singleheight};
-  width: ${width / 3};
+  height: ${(props) => props.singleheight}px;
+  width: ${width / 3}px;
   border: 1px solid gray;
 `;
 
