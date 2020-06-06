@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableWithoutFeedback, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableHighlight,
+  Dimensions,
+} from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import styled from "styled-components";
 const { width, height } = Dimensions.get("screen");
@@ -10,14 +16,21 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 export default (props) => {
-  const { setModalVisible } = props;
+  console.log("check", props.navigation);
+
+  const { setModalVisible, navigation } = props;
+
+  const handleSettings = () => {
+    setModalVisible(false);
+    navigation.navigation.push("Settings");
+  };
   return (
     <Container>
       <Wrapper>
         <MenuTouchZone
-          onPress={() => {
-            alert("hello");
-          }}
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={() => handleSettings()}
         >
           <MenuList>
             <IconBox>
@@ -103,7 +116,7 @@ const Wrapper = styled.View`
   flex: 1;
 `;
 
-const MenuTouchZone = styled.TouchableOpacity``;
+const MenuTouchZone = styled.TouchableHighlight``;
 
 const MenuList = styled.View`
   height: 50px;

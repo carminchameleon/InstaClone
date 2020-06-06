@@ -18,7 +18,8 @@ import Constants from "expo-constants";
 const statusBarHeight = Constants.statusBarHeight;
 const { width, height } = Dimensions.get("screen");
 
-export default () => {
+export default (props) => {
+  console.log(props);
   const [modalVisible, setModalVisible] = useState(false);
   const handleModal = () => {
     setModalVisible(true);
@@ -57,7 +58,10 @@ export default () => {
 
         <ScrollView directionalLockEnabled={true}>
           <TouchableWithoutFeedback>
-            <ProfileModal></ProfileModal>
+            <ProfileModal
+              setModalVisible={setModalVisible}
+              navigation={props}
+            ></ProfileModal>
           </TouchableWithoutFeedback>
         </ScrollView>
       </Modal>
