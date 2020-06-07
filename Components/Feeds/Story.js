@@ -3,7 +3,7 @@ import { View, Text, FlatList, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components";
 import { theme } from "../theme";
-
+import Post from "./Post";
 const storyDatas = [
   {
     name: "david",
@@ -58,7 +58,7 @@ export default () => {
               alignItems: "center",
             }}
           >
-            <StoryImg source={{ url: `${item.source}` }}></StoryImg>
+            <StoryImg source={{ uri: `${item.source}` }}></StoryImg>
           </LinearGradient>
         </ImgContainer>
         <IDContainer>
@@ -75,11 +75,12 @@ export default () => {
         data={storyDatas}
         renderItem={renderItem}
       />
+      <Post />
     </Container>
   );
 };
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   height: 100px;
   width: 100%;
   display: flex;

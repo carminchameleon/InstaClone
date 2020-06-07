@@ -17,7 +17,7 @@ import { EvilIcons, Ionicons } from "@expo/vector-icons";
 
 const ALBUM_NAME = "Eunstagram";
 
-export default () => {
+export default ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef = React.createRef();
@@ -74,7 +74,7 @@ export default () => {
 
   return (
     <Container>
-      <TopNav />
+      <TopNav navigation={navigation} />
       <CameraZone>
         <Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
           <IconContainer>

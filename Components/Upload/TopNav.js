@@ -18,7 +18,8 @@ import Constants from "expo-constants";
 const statusBarHeight = Constants.statusBarHeight;
 const { width, height } = Dimensions.get("screen");
 
-export default () => {
+export default (props) => {
+  const { navigation } = props;
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -26,7 +27,7 @@ export default () => {
       <TopMenu isPlatform={Platform.OS === "android"}>
         <MenuBox
           onPress={() => {
-            alert("hello");
+            navigation.goBack();
           }}
         >
           <MenuWrapper isPlatform={Platform.OS === "android"}>
@@ -45,7 +46,7 @@ export default () => {
 const SafeZone = styled.SafeAreaView``;
 const TopMenu = styled.View`
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight}px` : "10px"};
   height: 50px;
   border-bottom-color: ${theme.BORDER_COLOR};
   border-bottom-width: 0.3px;
@@ -67,7 +68,7 @@ const MenuBox = styled.TouchableWithoutFeedback``;
 const MenuWrapper = styled.View`
   position: absolute;
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight}px` : "10px"};
   left: 15px;
 `;
 

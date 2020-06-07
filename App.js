@@ -4,7 +4,7 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-
+import MainTabsScreen from "./Navigation/Navigation";
 import { Asset } from "expo-asset";
 import RootStacks from "./Navigation/Stack";
 ////////////////////////////////
@@ -63,37 +63,37 @@ const styles = StyleSheet.create({
 
 ///////////////////////
 
-const Tabs = createBottomTabNavigator();
+// const Tabs = createBottomTabNavigator();
 
-const MainTabsScreen = () => (
-  <Tabs.Navigator mode="modal">
-    <Tabs.Screen name="Upload" component={Upload} />
-    <Tabs.Screen name="Profile" component={StackScreens} />
-    <Tabs.Screen name="Feeds" component={Feeds} />
-    <Tabs.Screen name="Search" component={Search} />
-  </Tabs.Navigator>
-);
+// const MainTabsScreen = () => (
+//   <Tabs.Navigator mode="modal">
+//     <Tabs.Screen name="Upload" component={Upload} />
+//     <Tabs.Screen name="Profile" component={StackScreens} />
+//     <Tabs.Screen name="Feeds" component={Feeds} />
+//     <Tabs.Screen name="Search" component={Search} />
+//   </Tabs.Navigator>
+// );
 
-const Stacks = createStackNavigator();
+// const Stacks = createStackNavigator();
 
-const StackScreens = () => (
-  <Stacks.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: "#fafafa",
-        borderBottomColor: "blue",
-      },
-      headerTintColor: "rgb(38, 38, 38)",
-      headerBackTitleVisible: false,
-      // 이전의 타이틀을 보여줄 것인지
-    }}
-  >
-    <Stacks.Screen
-      name="Profile"
-      component={Profile}
-      options={{ headerShown: false }}
-    />
-    <Stacks.Screen name="Settings" component={Settings} />
-    <Stacks.Screen name="Search" component={Search} />
-  </Stacks.Navigator>
-);
+// const StackScreens = () => (
+//   <Stacks.Navigator
+//     screenOptions={{
+//       headerStyle: {
+//         backgroundColor: "#fafafa",
+//         borderBottomColor: "blue",
+//       },
+//       headerTintColor: "rgb(38, 38, 38)",
+//       headerBackTitleVisible: false,
+//       // 이전의 타이틀을 보여줄 것인지
+//     }}
+//   >
+//     <Stacks.Screen
+//       name="Profile"
+//       component={Profile}
+//       options={{ headerShown: false }}
+//     />
+//     <Stacks.Screen name="Settings" component={Settings} />
+//     <Stacks.Screen name="Search" component={Search} />
+//   </Stacks.Navigator>
+// );

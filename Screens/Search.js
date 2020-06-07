@@ -11,12 +11,10 @@ import {
 import Constants from "expo-constants";
 const statusBarHeight = Constants.statusBarHeight;
 import styled from "styled-components";
-import Input from "../Components/Search/Input";
 
 export default ({ navigation }) => (
   <SafeAreaView>
-    <Container isPlatform={Platform.OS === "android"}></Container>
-    <Input />
+    <Text>This is Search</Text>
   </SafeAreaView>
 );
 
