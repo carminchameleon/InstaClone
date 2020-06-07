@@ -10,7 +10,6 @@ export default ({ navigation }) => {
     <Container>
       <FeedTopNav />
       <Story />
-      <Post />
     </Container>
   );
 };

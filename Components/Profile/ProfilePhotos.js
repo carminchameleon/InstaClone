@@ -22,7 +22,7 @@ export default () => {
     }
     return (
       <PhotoBox>
-        <Photo singleheight={singleheight} source={{ url: item.key }}></Photo>
+        <Photo singleheight={singleheight} source={{ uri: item.key }}></Photo>
       </PhotoBox>
     );
   };

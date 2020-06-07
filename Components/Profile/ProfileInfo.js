@@ -7,10 +7,11 @@ import {
   SafeAreaView,
   Image,
   Platform,
+  ScrollView,
 } from "react-native";
 import styled from "styled-components";
 import { theme } from "../theme";
-
+import ProfilePhotos from "./ProfilePhotos";
 export default () => {
   return (
     <Container>
@@ -18,7 +19,7 @@ export default () => {
         <UserInfo>
           <UserProfileImg
             source={{
-              url:
+              uri:
                 "https://images.unsplash.com/photo-1575224889663-4d96137aac12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
             }}
           />
@@ -47,17 +48,18 @@ export default () => {
           </TouchableWithoutFeedback>
         </EditProfileBox>
       </IntroWrapper>
+      <ProfilePhotos />
     </Container>
   );
 };
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   display: flex;
-  padding: 15px;
 `;
 const InfoWrapper = styled.View`
   display: flex;
   flex-direction: row;
+  padding: 15px;
 `;
 
 const UserInfo = styled.View`
@@ -98,6 +100,8 @@ const Title = styled.Text`
 `;
 
 const IntroWrapper = styled.View`
+  padding: 15px;
+
   padding-top: 15px;
 `;
 

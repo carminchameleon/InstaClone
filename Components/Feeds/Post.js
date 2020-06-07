@@ -70,7 +70,7 @@ export default () => {
             <UserImgBox>
               <UserImg
                 source={{
-                  url: `${item.userImg}`,
+                  uri: `${item.userImg}`,
                 }}
               ></UserImg>
             </UserImgBox>
@@ -89,7 +89,7 @@ export default () => {
         <ImgContainer>
           <PostImg
             source={{
-              url: `${item.postImg}`,
+              uri: `${item.postImg}`,
             }}
           ></PostImg>
         </ImgContainer>
@@ -159,10 +159,10 @@ const UserImgBox = styled.View`
 `;
 
 const UserImg = styled.Image.attrs({
-  resizeMode: "contain",
+  resizeMode: "cover",
 })`
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
   border-radius: 20px;
 `;
 

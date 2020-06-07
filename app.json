@@ -24,13 +24,9 @@
       "package": "co.carminido.eunstagram",
       "versionCode": "1.0.0"
     },
-    "androidNavigationBar": {
-      "barStyle": "light-content",
-      "backgroundColor": "#ffffff"
-    },
     "androidStatusBar": {
-      "barStyle": "light-content",
-      "backgroundColor": "#ffffff"
+      "barStyle": "dark-content",
+      "backgroundColor": "#00000000"
     }
   }
 }

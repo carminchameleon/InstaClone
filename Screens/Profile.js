@@ -24,7 +24,6 @@ export default ({ navigation }) => {
     <Container>
       <TopMenu navigation={navigation} />
       <ProfileInfo />
-      <ProfilePhotos />
     </Container>
   );
 };
