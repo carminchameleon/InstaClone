@@ -9,7 +9,7 @@ import { Asset } from "expo-asset";
 import RootStacks from "./Navigation/Stack";
 ////////////////////////////////
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import Upload from "./Screens/Upload";
 import Settings from "./Screens/Settings";
 import Feeds from "./Screens/Feeds";
 import Profile from "./Screens/Profile";
@@ -67,6 +67,7 @@ const Tabs = createBottomTabNavigator();
 
 const MainTabsScreen = () => (
   <Tabs.Navigator mode="modal">
+    <Tabs.Screen name="Upload" component={Upload} />
     <Tabs.Screen name="Profile" component={StackScreens} />
     <Tabs.Screen name="Feeds" component={Feeds} />
     <Tabs.Screen name="Search" component={Search} />
