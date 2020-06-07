@@ -10,10 +10,14 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import styled from "styled-components";
 const { width, height } = Dimensions.get("screen");
 import { theme } from "../theme";
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  Ionicons,
+  Entypo,
+  MaterialIcons,
+} from "@expo/vector-icons";
+
 import { TouchableOpacity } from "react-native-gesture-handler";
 export default (props) => {
   console.log("check", props.navigation);

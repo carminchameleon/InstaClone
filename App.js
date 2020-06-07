@@ -67,9 +67,9 @@ const Tabs = createBottomTabNavigator();
 
 const MainTabsScreen = () => (
   <Tabs.Navigator mode="modal">
+    <Tabs.Screen name="Profile" component={StackScreens} />
     <Tabs.Screen name="Feeds" component={Feeds} />
     <Tabs.Screen name="Search" component={Search} />
-    <Tabs.Screen name="Profile" component={StackScreens} />
   </Tabs.Navigator>
 );
 
@@ -92,7 +92,7 @@ const StackScreens = () => (
       component={Profile}
       options={{ headerShown: false }}
     />
-    <Stacks.Screen name="Search" component={Search} />
     <Stacks.Screen name="Settings" component={Settings} />
+    <Stacks.Screen name="Search" component={Search} />
   </Stacks.Navigator>
 );
