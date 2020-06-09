@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, {useState} from 'react';
+import styled from 'styled-components';
 import {
   View,
   TouchableWithoutFeedback,
@@ -12,57 +12,59 @@ import {
   TouchableOpacity,
   Dimensions,
   TextInput,
-} from "react-native";
+} from 'react-native';
 import {
   AntDesign,
   FontAwesome,
   Ionicons,
   Entypo,
   MaterialIcons,
-} from "@expo/vector-icons";
-import { theme } from "../theme";
-const { width, height } = Dimensions.get("screen");
+} from '@expo/vector-icons';
+import {theme} from '../theme';
+const {width, height} = Dimensions.get('screen');
 
 const MenuList = [
   {
-    MenuName: "Follow and Invite Friends",
-    IconName: "person-add",
+    MenuName: 'Follow and Invite Friends',
+    IconName: 'person-add',
   },
   {
-    MenuName: "Your Activity",
-    IconName: "access-time",
+    MenuName: 'Your Activity',
+    IconName: 'access-time',
   },
   {
-    MenuName: "Notifications",
-    IconName: "notifications-none",
+    MenuName: 'Notifications',
+    IconName: 'notifications-none',
   },
   {
-    MenuName: "Privacy",
-    IconName: "lock-outline",
+    MenuName: 'Privacy',
+    IconName: 'lock-outline',
   },
   {
-    MenuName: "Security",
-    IconName: "security",
+    MenuName: 'Security',
+    IconName: 'security',
   },
   {
-    MenuName: "Ads",
-    IconName: "business-center",
+    MenuName: 'Ads',
+    IconName: 'business-center',
   },
   {
-    MenuName: "Accounts",
-    IconName: "account-circle",
+    MenuName: 'Accounts',
+    IconName: 'account-circle',
   },
   {
-    MenuName: "Help",
-    IconName: "help-outline",
+    MenuName: 'Help',
+    IconName: 'help-outline',
   },
   {
-    MenuName: "About",
-    IconName: "info-outline",
+    MenuName: 'About',
+    IconName: 'info-outline',
   },
 ];
 
-export default () => {
+export default ({navigation}) => {
+  console.log('set', navigation);
+
   return (
     <Container>
       <MenuContainer>
@@ -71,7 +73,7 @@ export default () => {
             <MenuTouchZone
               activeOpacity={0.6}
               underlayColor={theme.BORDER_COLOR}
-              onPress={() => alert("helllo")}
+              onPress={() => alert('helllo')}
             >
               <MenuBox>
                 <MenuTitle>
@@ -95,7 +97,11 @@ export default () => {
         <MenuTouchZone>
           <LoginTitleName>Add Account</LoginTitleName>
         </MenuTouchZone>
-        <MenuTouchZone>
+        <MenuTouchZone
+          onPress={() => {
+            navigation.navigate('Login');
+          }}
+        >
           <LoginTitleName>Log Out carminido</LoginTitleName>
         </MenuTouchZone>
       </AuthContainer>

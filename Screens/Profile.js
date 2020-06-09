@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   TouchableWithoutFeedback,
@@ -7,19 +7,17 @@ import {
   SafeAreaView,
   Image,
   Platform,
-} from "react-native";
-import { theme } from "../Components/theme";
+} from 'react-native';
+import {theme} from '../Components/theme';
 
-import styled from "styled-components";
-import TopMenu from "../Components/Profile/TopMenu";
-import ProfileInfo from "../Components/Profile/ProfileInfo";
-import ProfilePhotos from "../Components/Profile/ProfilePhotos";
-import Constants from "expo-constants";
+import styled from 'styled-components';
+import TopMenu from '../Components/Profile/TopMenu';
+import ProfileInfo from '../Components/Profile/ProfileInfo';
+import ProfilePhotos from '../Components/Profile/ProfilePhotos';
+import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight;
 
-export default ({ navigation }) => {
-  // console.log(navigation);
-
+export default ({navigation}) => {
   return (
     <Container>
       <TopMenu navigation={navigation} />

@@ -1,64 +1,28 @@
-import React from "react";
-import { View, Text, FlatList, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import styled from "styled-components";
-import { theme } from "../theme";
-import Post from "./Post";
-const storyDatas = [
-  {
-    name: "david",
-    source:
-      "https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/s150x150/98419098_241835093901173_7720055465173843968_n.jpg?_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_ohc=wYWpEV2YUbcAX-nXpa6&oh=96d4a40c90f5ff375757854fdc008c74&oe=5F027A2C",
-  },
-  {
-    name: "nicolas",
-    source:
-      "https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/s150x150/92227338_2497944530469406_3021297677833863168_n.jpg?_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_ohc=PfH0JuaTqToAX_ARrew&oh=78f8a3126b599413a3bada7f257b48bd&oe=5F0363C0",
-  },
-  {
-    name: "martin",
-    source:
-      "https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/s150x150/73414114_2547376445282379_6117266579039191040_n.jpg?_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_ohc=xB8KbTnn4nsAX9Eyr--&oh=9e8cc0c2a1665a53e0d340cc64776b66&oe=5F037DF4",
-  },
-  {
-    name: "kyle",
-    source:
-      "http://img.lifestyler.co.kr/NewIMG/frontenm/ch/tvn/2020/20200305_doctorlife_info/images/1_img_01.png",
-  },
-  {
-    name: "scott",
-    source:
-      "http://img.lifestyler.co.kr/NewIMG/frontenm/ch/tvn/2020/20200305_doctorlife_info/images/4_img_01.png",
-  },
-  {
-    name: "brandon",
-    source:
-      "http://img.lifestyler.co.kr/NewIMG/frontenm/ch/tvn/2020/20200305_doctorlife_info/images/3_img_01.png",
-  },
-  {
-    name: "nicole",
-    source:
-      "http://img.lifestyler.co.kr/NewIMG/frontenm/ch/tvn/2020/20200305_doctorlife_info/images/5_img_01.png",
-  },
-];
+import React from 'react';
+import {View, Text, FlatList, Image} from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
+import styled from 'styled-components';
+import {theme} from '../theme';
+import Post from './Post';
+import {ScrollView} from 'react-native-gesture-handler';
 
 export default () => {
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <StoryContainer>
         <ImgContainer>
           <LinearGradient
-            colors={["#f58529", "#FEDA77", "#dd2a7b", "#8134af"]}
+            colors={['#f58529', '#FEDA77', '#dd2a7b', '#8134af']}
             style={{
               width: 65,
               height: 65,
               borderRadius: 32.5,
-              justifyContent: "center",
-              display: "flex",
-              alignItems: "center",
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
-            <StoryImg source={{ uri: `${item.source}` }}></StoryImg>
+            <StoryImg source={{uri: `${item.source}`}}></StoryImg>
           </LinearGradient>
         </ImgContainer>
         <IDContainer>
@@ -69,18 +33,18 @@ export default () => {
   };
   return (
     <Container>
-      <FlatList
+      <StoryWrapper
+        keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={storyDatas}
         renderItem={renderItem}
       />
-      <Post />
     </Container>
   );
 };
 
-const Container = styled.ScrollView`
+const Container = styled.View`
   height: 100px;
   width: 100%;
   display: flex;
@@ -89,7 +53,7 @@ const Container = styled.ScrollView`
   border-bottom-color: ${theme.BORDER_COLOR};
 `;
 
-const StoryScrollView = styled.ScrollView``;
+const StoryWrapper = styled.FlatList``;
 
 const StoryContainer = styled.View`
   width: 100%;
@@ -105,12 +69,11 @@ const ImgContainer = styled.View`
 `;
 
 const StoryImg = styled.Image.attrs({
-  resizeMode: "cover",
+  resizeMode: 'cover',
 })`
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  border: 3px solid white;
 `;
 
 const IDContainer = styled.View`
@@ -121,3 +84,54 @@ const UserId = styled.Text`
   text-align: center;
   font-size: 12px;
 `;
+
+const storyDatas = [
+  {
+    id: 1,
+    name: 'david',
+    source:
+      'https://images.unsplash.com/photo-1468186376524-b53e47314061?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 2,
+    name: 'nicolas',
+    source:
+      'https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 3,
+    name: 'martin',
+    source:
+      'https://images.unsplash.com/photo-1475049120922-5fd74aecbfe9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 4,
+    name: 'kyle',
+    source:
+      'https://images.unsplash.com/photo-1517255666489-db1d2c54d083?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 5,
+    name: 'scott',
+    source:
+      'https://images.unsplash.com/photo-1517325619117-a469256220f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 6,
+    name: 'brandon',
+    source:
+      'https://images.unsplash.com/photo-1465188035480-cf3a60801ea5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    id: 7,
+    name: 'nicole',
+    source:
+      'https://images.unsplash.com/photo-1517588978316-1cebd2151f37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 8,
+    name: 'jenny__',
+    source:
+      'https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+  },
+];
