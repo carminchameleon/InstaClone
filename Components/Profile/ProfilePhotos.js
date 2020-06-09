@@ -151,7 +151,6 @@ const Photo = styled.Image.attrs({
 })`
   height: ${(props) => props.singleheight}px;
   width: ${width / 3}px;
-  border: 1px solid gray;
 `;
 
 const data = [
