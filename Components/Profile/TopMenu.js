@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, {useState} from 'react';
+import styled from 'styled-components';
 import {
   View,
   TouchableWithoutFeedback,
@@ -11,22 +11,21 @@ import {
   Modal,
   TouchableOpacity,
   Dimensions,
-} from "react-native";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
-import ProfileModal from "./ProfileModal";
-import Constants from "expo-constants";
+} from 'react-native';
+import {AntDesign, Ionicons} from '@expo/vector-icons';
+import ProfileModal from './ProfileModal';
+import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight;
-const { width, height } = Dimensions.get("screen");
+const {width, height} = Dimensions.get('screen');
 
-export default (props) => {
-  console.log(props);
+export default ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const handleModal = () => {
     setModalVisible(true);
   };
   return (
     <SafeZone>
-      <TopMenu isPlatform={Platform.OS === "android"}>
+      <TopMenu isPlatform={Platform.OS === 'android'}>
         <IdBox>
           <UserId>carminido_</UserId>
           <AntDesign name="down" size={15} color="black" />
@@ -36,7 +35,7 @@ export default (props) => {
             setModalVisible(true);
           }}
         >
-          <MenuWrapper isPlatform={Platform.OS === "android"}>
+          <MenuWrapper isPlatform={Platform.OS === 'android'}>
             <Ionicons name="ios-menu" size={30} color="black" />
           </MenuWrapper>
         </MenuBox>
@@ -55,12 +54,11 @@ export default (props) => {
             setModalVisible(false);
           }}
         ></ModalZone>
-
         <ScrollView directionalLockEnabled={true}>
           <TouchableWithoutFeedback>
             <ProfileModal
               setModalVisible={setModalVisible}
-              navigation={props}
+              navigation={navigation}
             ></ProfileModal>
           </TouchableWithoutFeedback>
         </ScrollView>
@@ -72,7 +70,7 @@ export default (props) => {
 const SafeZone = styled.SafeAreaView``;
 const TopMenu = styled.View`
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight + 10}px` : '10px'};
   height: 50px;
 `;
 
@@ -92,7 +90,7 @@ const MenuBox = styled.TouchableWithoutFeedback``;
 const MenuWrapper = styled.View`
   position: absolute;
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight + 10}px` : '10px'};
   top: -5px;
   right: 15px;
 `;

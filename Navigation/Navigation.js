@@ -1,32 +1,24 @@
-import React, { useLayoutEffect, useState } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React, {useLayoutEffect, useState} from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   MaterialCommunityIcons,
   Ionicons,
   MaterialIcons,
   AntDesign,
-} from "@expo/vector-icons";
-import { createStackNavigator } from "@react-navigation/stack";
+} from '@expo/vector-icons';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import { theme } from "../Components/theme";
-import Feeds from "../Screens/Feeds";
-import Search from "../Screens/Search";
-import Upload from "../Screens/Upload";
-import Activity from "../Screens/Activity";
-import Profile from "../Screens/Profile";
-import Settings from "../Screens/Settings";
-
+import {theme} from '../Components/theme';
+import Feeds from '../Screens/Feeds';
+import Search from '../Screens/Search';
+import Upload from '../Screens/Upload';
+import Activity from '../Screens/Activity';
+import Profile from '../Screens/Profile';
+import Settings from '../Screens/Settings';
+import Login from '../Screens/Login';
 const Tabs = createBottomTabNavigator();
 
-const getHeaderName = (route) => route?.state?.routeNames[route.state.index];
-
-const MainTabsScreen = ({ navigation, route }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleModalVisible = () => {
-    navigation.navigate("photo");
-  };
-
+const MainTabsScreen = () => {
   return (
     <Tabs.Navigator
       mode="modal"
@@ -45,9 +37,9 @@ const MainTabsScreen = ({ navigation, route }) => {
         name="Feeds"
         component={Feeds}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
+          tabBarIcon: ({focused, size}) => (
             <MaterialCommunityIcons
-              name={focused ? "home" : "home-outline"}
+              name={focused ? 'home' : 'home-outline'}
               size={size}
               color={theme.BLACK_COLOR}
             />
@@ -59,9 +51,9 @@ const MainTabsScreen = ({ navigation, route }) => {
         name="Search"
         component={Search}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
+          tabBarIcon: ({focused, color, size}) => (
             <Ionicons
-              name={focused ? "md-search" : "ios-search"}
+              name={focused ? 'md-search' : 'ios-search'}
               size={size}
               color={theme.BLACK_COLOR}
             />
@@ -73,9 +65,9 @@ const MainTabsScreen = ({ navigation, route }) => {
         component={Upload}
         options={{
           tabBarVisible: false,
-          tabBarIcon: ({ focused, color, size }) => (
+          tabBarIcon: ({focused, color, size}) => (
             <AntDesign
-              name={focused ? "plussquare" : "plussquareo"}
+              name={focused ? 'plussquare' : 'plussquareo'}
               size={size}
               color={theme.BLACK_COLOR}
             />
@@ -86,9 +78,9 @@ const MainTabsScreen = ({ navigation, route }) => {
         name="Activity"
         component={Activity}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
+          tabBarIcon: ({focused, color, size}) => (
             <Ionicons
-              name={focused ? "ios-heart" : "ios-heart-empty"}
+              name={focused ? 'ios-heart' : 'ios-heart-empty'}
               size={size}
               color={theme.BLACK_COLOR}
             />
@@ -99,9 +91,9 @@ const MainTabsScreen = ({ navigation, route }) => {
         name="Profile"
         component={StackScreens}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
+          tabBarIcon: ({focused, color, size}) => (
             <MaterialIcons
-              name={focused ? "person" : "person-outline"}
+              name={focused ? 'person' : 'person-outline'}
               size={size}
               color={theme.BLACK_COLOR}
             />
@@ -112,7 +104,7 @@ const MainTabsScreen = ({ navigation, route }) => {
   );
 };
 
-export default MainTabsScreen;
+// export default MainTabsScreen;
 
 const Stacks = createStackNavigator();
 
@@ -120,10 +112,10 @@ const StackScreens = () => (
   <Stacks.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#fafafa",
-        borderBottomColor: "blue",
+        backgroundColor: '#fafafa',
+        borderBottomColor: 'blue',
       },
-      headerTintColor: "rgb(38, 38, 38)",
+      headerTintColor: 'rgb(38, 38, 38)',
       headerBackTitleVisible: false,
       // 이전의 타이틀을 보여줄 것인지
     }}
@@ -131,8 +123,27 @@ const StackScreens = () => (
     <Stacks.Screen
       name="Profile"
       component={Profile}
-      options={{ headerShown: false }}
+      options={{headerShown: false}}
     />
     <Stacks.Screen name="Settings" component={Settings} />
   </Stacks.Navigator>
 );
+
+const RootStack = createStackNavigator();
+
+const RootStackScreens = () => (
+  <RootStack.Navigator
+    mode="modal"
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <RootStack.Screen name="Login" component={Login}></RootStack.Screen>
+    <RootStack.Screen
+      name="mainStack"
+      component={MainTabsScreen}
+    ></RootStack.Screen>
+  </RootStack.Navigator>
+);
+
+export default RootStackScreens;

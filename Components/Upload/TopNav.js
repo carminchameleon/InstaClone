@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, {useState} from 'react';
+import styled from 'styled-components';
 import {
   View,
   TouchableWithoutFeedback,
@@ -11,30 +11,30 @@ import {
   Modal,
   TouchableOpacity,
   Dimensions,
-} from "react-native";
-import { theme } from "../theme";
+} from 'react-native';
+import {theme} from '../theme';
 
-import Constants from "expo-constants";
+import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight;
-const { width, height } = Dimensions.get("screen");
+const {width, height} = Dimensions.get('screen');
 
-export default (props) => {
-  const { navigation } = props;
+export default ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <SafeZone>
-      <TopMenu isPlatform={Platform.OS === "android"}>
-        <MenuBox
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <MenuWrapper isPlatform={Platform.OS === "android"}>
-            <CancleText>취소</CancleText>
+      <TopMenu isPlatform={Platform.OS === 'android'}>
+        <MenuBox>
+          <MenuWrapper isPlatform={Platform.OS === 'android'}>
+            <CancleText
+              onPress={() => {
+                navigation.navigate('Feeds');
+              }}
+            >
+              취소
+            </CancleText>
           </MenuWrapper>
         </MenuBox>
-
         <IdBox>
           <UserId>사진</UserId>
         </IdBox>
@@ -46,7 +46,7 @@ export default (props) => {
 const SafeZone = styled.SafeAreaView``;
 const TopMenu = styled.View`
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight}px` : '10px'};
   height: 50px;
   border-bottom-color: ${theme.BORDER_COLOR};
   border-bottom-width: 0.3px;
@@ -63,12 +63,12 @@ const UserId = styled.Text`
   font-weight: bold;
 `;
 
-const MenuBox = styled.TouchableWithoutFeedback``;
+const MenuBox = styled.TouchableOpacity``;
 
 const MenuWrapper = styled.View`
   position: absolute;
   padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight}px` : "10px"};
+    props.isPlatform ? `${statusBarHeight}px` : '10px'};
   left: 15px;
 `;
 

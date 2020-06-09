@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,9 @@ import {
   Dimensions,
   FlatList,
   ActivityIndicator,
-} from "react-native";
-import axios from "axios";
-import styled from "styled-components";
+} from 'react-native';
+import axios from 'axios';
+import styled from 'styled-components';
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -18,13 +18,14 @@ import {
   MaterialIcons,
   AntDesign,
   Entypo,
-} from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
-import Story from "./Story";
-import { symbol } from "prop-types";
+} from '@expo/vector-icons';
+import {feedData} from './feedDatas';
+import {ScrollView} from 'react-native-gesture-handler';
+import Story from './Story';
+import {symbol} from 'prop-types';
 
 // 화면이 넓이와 크기를 얻어올 수 있음
-const { width, height } = Dimensions.get("screen");
+const {width, height} = Dimensions.get('screen');
 
 export default () => {
   const [page, setpage] = useState(1);
@@ -33,14 +34,14 @@ export default () => {
 
   async function getFeedDatas() {
     try {
-      // fetch data from a url endpoint
       const feeddata = await axios.get(
         `https://my-json-server.typicode.com/hong-dev/json_server/posts?_limit=5&_page=${page}`
       );
-      setData(data.concat(feeddata["data"]));
+      console.log('data fetch');
+      setData(data.concat(feeddata['data']));
       isLoading(false);
     } catch (error) {
-      console.log("error", error);
+      console.log('error', error);
     }
   }
 
@@ -62,7 +63,7 @@ export default () => {
     ) : null;
   };
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({item}) => {
     return (
       <PostContainer>
         <InfoContainer>
@@ -159,7 +160,7 @@ const UserImgBox = styled.View`
 `;
 
 const UserImg = styled.Image.attrs({
-  resizeMode: "cover",
+  resizeMode: 'cover',
 })`
   width: 40px;
   height: 40px;
@@ -181,7 +182,7 @@ const ImgContainer = styled.View`
 `;
 
 const PostImg = styled.Image.attrs({
-  resizeMode: "cover",
+  resizeMode: 'cover',
 })`
   width: 100%;
   height: 100%;

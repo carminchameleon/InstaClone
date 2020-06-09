@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   TouchableWithoutFeedback,
@@ -8,10 +8,10 @@ import {
   Image,
   Platform,
   ScrollView,
-} from "react-native";
-import styled from "styled-components";
-import { theme } from "../theme";
-import ProfilePhotos from "./ProfilePhotos";
+} from 'react-native';
+import styled from 'styled-components';
+import {theme} from '../theme';
+import ProfilePhotos from './ProfilePhotos';
 export default () => {
   return (
     <Container>
@@ -20,7 +20,7 @@ export default () => {
           <UserProfileImg
             source={{
               uri:
-                "https://images.unsplash.com/photo-1575224889663-4d96137aac12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
+                'https://images.unsplash.com/photo-1575224889663-4d96137aac12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
             }}
           />
           <UserNumbers>
@@ -29,11 +29,11 @@ export default () => {
               <Title>Posts</Title>
             </NumberBox>
             <NumberBox>
-              <Number>533</Number>
+              <Number>256</Number>
               <Title>Followers</Title>
             </NumberBox>
             <NumberBox>
-              <Number>533</Number>
+              <Number>233</Number>
               <Title>Following</Title>
             </NumberBox>
           </UserNumbers>
@@ -71,7 +71,7 @@ const UserInfo = styled.View`
 `;
 
 const UserProfileImg = styled.Image.attrs({
-  resizeMode: "cover",
+  resizeMode: 'cover',
 })`
   width: 80px;
   height: 80px;

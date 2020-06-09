@@ -1,32 +1,30 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   TouchableWithoutFeedback,
   TouchableHighlight,
   Dimensions,
-} from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import styled from "styled-components";
-const { width, height } = Dimensions.get("screen");
-import { theme } from "../theme";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/EvilIcons';
+import styled from 'styled-components';
+const {width, height} = Dimensions.get('screen');
+import {theme} from '../theme';
 import {
   AntDesign,
   FontAwesome,
   Ionicons,
   Entypo,
   MaterialIcons,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {TouchableOpacity} from 'react-native-gesture-handler';
 export default (props) => {
-  console.log("check", props.navigation);
-
-  const { setModalVisible, navigation } = props;
+  const {setModalVisible, navigation} = props;
 
   const handleSettings = () => {
     setModalVisible(false);
-    navigation.navigation.push("Settings");
+    navigation.navigate('Settings');
   };
   return (
     <Container>
