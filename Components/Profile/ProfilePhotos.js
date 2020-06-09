@@ -8,7 +8,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import {theme} from '../theme';
+import {theme} from '../../Styles/theme';
 import styled from 'styled-components';
 import {Ionicons, MaterialIcons} from '@expo/vector-icons';
 const {width, height} = Dimensions.get('screen');

@@ -1,77 +1,58 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {
-  View,
-  TouchableWithoutFeedback,
-  Text,
-  SafeAreaView,
-  Image,
-  Platform,
-  ScrollView,
-  Modal,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import {theme} from '../theme';
+import {View, Text, SafeAreaView, Platform, Dimensions} from 'react-native';
+import {theme} from '../../Styles/theme';
 
 import Constants from 'expo-constants';
 const statusBarHeight = Constants.statusBarHeight;
-const {width, height} = Dimensions.get('screen');
+const {width: WIDTH, height: HEIGHT} = Dimensions.get('screen');
 
 export default ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <SafeZone>
-      <TopMenu isPlatform={Platform.OS === 'android'}>
-        <MenuBox>
-          <MenuWrapper isPlatform={Platform.OS === 'android'}>
-            <CancleText
-              onPress={() => {
-                navigation.navigate('Feeds');
-              }}
-            >
-              취소
-            </CancleText>
-          </MenuWrapper>
-        </MenuBox>
-        <IdBox>
-          <UserId>사진</UserId>
-        </IdBox>
-      </TopMenu>
-    </SafeZone>
+    <Container>
+      <Wrapper isPlatform={Platform.OS === 'android'}>
+        <PhotoText>Photo</PhotoText>
+        <CancleText
+          isPlatform={Platform.OS === 'android'}
+          onPress={() => {
+            navigation.navigate('Feeds');
+          }}
+        >
+          Cancle
+        </CancleText>
+      </Wrapper>
+    </Container>
   );
 };
 
-const SafeZone = styled.SafeAreaView``;
-const TopMenu = styled.View`
-  padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight}px` : '10px'};
-  height: 50px;
-  border-bottom-color: ${theme.BORDER_COLOR};
-  border-bottom-width: 0.3px;
+const Container = styled.SafeAreaView`
+  width: ${WIDTH}px;
+  height: ${HEIGHT / 10}px;
+  padding: 5px 10px;
+  background-color: ${theme.GRAY_COLOR};
+  display: flex;
+  justify-content: center;
 `;
-
-const IdBox = styled.View`
+const Wrapper = styled.View`
+  padding-top: ${(props) =>
+    props.isPlatform ? `${statusBarHeight + 6}px` : '15px'};
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
+  padding-bottom: 10px;
 `;
-const UserId = styled.Text`
+const PhotoText = styled.Text`
   font-size: 17px;
   font-weight: bold;
 `;
-
-const MenuBox = styled.TouchableOpacity``;
-
-const MenuWrapper = styled.View`
-  position: absolute;
-  padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight}px` : '10px'};
-  left: 15px;
-`;
-
 const CancleText = styled.Text`
+  padding-top: ${(props) =>
+    props.isPlatform ? `${statusBarHeight + 6}px` : '0px'};
+  position: absolute;
+  left: 10px;
   font-size: 17px;
 `;

@@ -24,8 +24,8 @@ export default ({navigation}) => {
     setModalVisible(true);
   };
   return (
-    <SafeZone>
-      <TopMenu isPlatform={Platform.OS === 'android'}>
+    <Container>
+      <TopMenu>
         <IdBox>
           <UserId>carminido_</UserId>
           <AntDesign name="down" size={15} color="black" />
@@ -35,7 +35,7 @@ export default ({navigation}) => {
             setModalVisible(true);
           }}
         >
-          <MenuWrapper isPlatform={Platform.OS === 'android'}>
+          <MenuWrapper>
             <Ionicons name="ios-menu" size={30} color="black" />
           </MenuWrapper>
         </MenuBox>
@@ -63,15 +63,19 @@ export default ({navigation}) => {
           </TouchableWithoutFeedback>
         </ScrollView>
       </Modal>
-    </SafeZone>
+    </Container>
   );
 };
 
-const SafeZone = styled.SafeAreaView``;
-const TopMenu = styled.View`
-  padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : '10px'};
+const Container = styled.View`
+  display: flex;
   height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+const TopMenu = styled.View`
+  width: 100%;
 `;
 
 const IdBox = styled.View`
@@ -89,13 +93,12 @@ const MenuBox = styled.TouchableWithoutFeedback``;
 
 const MenuWrapper = styled.View`
   position: absolute;
-  padding-top: ${(props) =>
-    props.isPlatform ? `${statusBarHeight + 10}px` : '10px'};
   top: -5px;
   right: 15px;
 `;
 
 const ModalZone = styled.TouchableOpacity`
+  position: relative;
   width: 100%;
   height: 50%;
   background-color: transparent;

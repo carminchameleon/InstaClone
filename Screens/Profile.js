@@ -8,26 +8,27 @@ import {
   Image,
   Platform,
 } from 'react-native';
-import {theme} from '../Components/theme';
-
-import styled from 'styled-components';
+import Constants from 'expo-constants';
 import TopMenu from '../Components/Profile/TopMenu';
 import ProfileInfo from '../Components/Profile/ProfileInfo';
-import ProfilePhotos from '../Components/Profile/ProfilePhotos';
-import Constants from 'expo-constants';
+import {theme} from '../Styles/theme';
+import styled from 'styled-components';
+
 const statusBarHeight = Constants.statusBarHeight;
 
 export default ({navigation}) => {
   return (
-    <Container>
+    <Container isPlatform={Platform.OS === 'android'}>
       <TopMenu navigation={navigation} />
       <ProfileInfo />
     </Container>
   );
 };
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   flex: 1;
   display: flex;
   background-color: ${theme.GRAY_COLOR};
+  padding-top: ${(props) =>
+    props.isPlatform ? `${statusBarHeight + 10}px` : '10px'};
 `;
