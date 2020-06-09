@@ -2,30 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  Button,
   Image,
   Dimensions,
   FlatList,
   ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
-import styled from 'styled-components';
 import {
   MaterialCommunityIcons,
   Ionicons,
   EvilIcons,
   FontAwesome,
-  MaterialIcons,
-  AntDesign,
   Entypo,
 } from '@expo/vector-icons';
-import {feedData} from './feedDatas';
-import {ScrollView} from 'react-native-gesture-handler';
-import Story from './Story';
-import {symbol} from 'prop-types';
+import styled from 'styled-components';
 
-// 화면이 넓이와 크기를 얻어올 수 있음
-const {width, height} = Dimensions.get('screen');
+const {width: WIDTH, height: HEIGHT} = Dimensions.get('screen');
 
 export default () => {
   const [page, setpage] = useState(1);
@@ -37,7 +29,6 @@ export default () => {
       const feeddata = await axios.get(
         `https://my-json-server.typicode.com/hong-dev/json_server/posts?_limit=5&_page=${page}`
       );
-      console.log('data fetch');
       setData(data.concat(feeddata['data']));
       isLoading(false);
     } catch (error) {
@@ -130,6 +121,7 @@ export default () => {
 };
 
 const Container = styled.View`
+  width: ${WIDTH};
   flex: 1;
 `;
 
@@ -162,8 +154,8 @@ const UserImgBox = styled.View`
 const UserImg = styled.Image.attrs({
   resizeMode: 'cover',
 })`
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
 `;
 
@@ -178,7 +170,8 @@ const UserId = styled.Text`
 const SettingBox = styled.View``;
 
 const ImgContainer = styled.View`
-  height: 414px;
+  height: ${WIDTH};
+  height: ${WIDTH};
 `;
 
 const PostImg = styled.Image.attrs({
@@ -200,13 +193,12 @@ const IconContainer = styled.View`
 `;
 
 const LeftIconBox = styled.View`
+  width: 25%;
   display: flex;
   flex-direction: row;
-  width: 27%;
   justify-content: space-between;
+  align-items: center;
 `;
-
-const LikeContainer = styled.View``;
 
 const Likes = styled.Text`
   font-weight: bold;

@@ -1,30 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-  Platform,
-} from "react-native";
-import { Camera, fileSystem } from "expo-camera";
-import styled from "styled-components";
-import TopNav from "../Components/Upload/TopNav";
-import theme from "../Components/theme";
-const { width, height } = Dimensions.get("window");
-import * as Permissions from "expo-permissions";
-import * as MediaLibrary from "expo-media-library";
-import { EvilIcons, Ionicons } from "@expo/vector-icons";
+import React, {useState, useEffect, useRef} from 'react';
+import {Text, View, TouchableOpacity, Dimensions, Platform} from 'react-native';
+import * as Permissions from 'expo-permissions';
+import * as MediaLibrary from 'expo-media-library';
+import {Camera, fileSystem} from 'expo-camera';
+import {EvilIcons, Ionicons} from '@expo/vector-icons';
+import TopNav from '../Components/Upload/TopNav';
+import styled from 'styled-components';
+import {theme} from '../Styles/theme';
+const {width: WIDTH, height: HEIGHT} = Dimensions.get('window');
 
-const ALBUM_NAME = "Eunstagram";
+const ALBUM_NAME = 'Eunstagram';
 
-export default ({ navigation }) => {
+export default ({navigation}) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef = React.createRef();
+
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === "granted");
+      const {status} = await Camera.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
     })();
   }, []);
 
@@ -38,7 +33,7 @@ export default ({ navigation }) => {
   const takePhoto = async () => {
     try {
       if (cameraRef.current) {
-        let { uri } = await cameraRef.current.takePictureAsync({
+        let {uri} = await cameraRef.current.takePictureAsync({
           quality: 1,
         });
         if (uri) {
@@ -52,8 +47,8 @@ export default ({ navigation }) => {
 
   const savePhoto = async (uri) => {
     try {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status === "granted") {
+      const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status === 'granted') {
         const asset = await MediaLibrary.createAssetAsync(uri);
         // 사진을 uri로 만들었음
         let album = await MediaLibrary.getAlbumAsync(ALBUM_NAME);
@@ -76,7 +71,7 @@ export default ({ navigation }) => {
     <Container>
       <TopNav navigation={navigation} />
       <CameraZone>
-        <Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
+        <Camera style={{flex: 1}} type={type} ref={cameraRef}>
           <IconContainer>
             <IconZone
               onPress={() => {
@@ -95,11 +90,10 @@ export default ({ navigation }) => {
           </IconContainer>
         </Camera>
       </CameraZone>
-
       <ButtonContainer>
         <ButtonZone
           onPress={() => {
-            takePhoto();
+            takePhoto(), alert('📲check EUNSTGAGRAM album!');
           }}
         >
           <Button></Button>
@@ -114,9 +108,8 @@ const Container = styled.View`
 `;
 
 const CameraZone = styled.View`
-  width: ${width};
-  height: ${width};
-  border: 1px solid black;
+  width: ${WIDTH};
+  height: ${WIDTH};
   display: flex;
 `;
 

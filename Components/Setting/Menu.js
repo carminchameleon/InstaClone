@@ -1,27 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {
-  View,
-  TouchableWithoutFeedback,
-  Text,
-  SafeAreaView,
-  Image,
-  Platform,
-  ScrollView,
-  Modal,
-  TouchableOpacity,
-  Dimensions,
-  TextInput,
-} from 'react-native';
-import {
-  AntDesign,
-  FontAwesome,
-  Ionicons,
-  Entypo,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import {theme} from '../theme';
-const {width, height} = Dimensions.get('screen');
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import {AntDesign, MaterialIcons} from '@expo/vector-icons';
+import {theme} from '../../Styles/theme';
 
 const MenuList = [
   {
@@ -63,8 +44,6 @@ const MenuList = [
 ];
 
 export default ({navigation}) => {
-  console.log('set', navigation);
-
   return (
     <Container>
       <MenuContainer>
@@ -112,7 +91,9 @@ export default ({navigation}) => {
     </Container>
   );
 };
-const Container = styled.View``;
+const Container = styled.ScrollView`
+  flex: 1;
+`;
 
 const MenuContainer = styled.View`
   background-color: ${theme.GRAY_COLOR};
@@ -122,6 +103,7 @@ const MenuContainer = styled.View`
 `;
 
 const MenuTouchZone = styled.TouchableOpacity``;
+
 const MenuBox = styled.View`
   width: 100%;
   padding: 7px 0;
@@ -134,6 +116,7 @@ const MenuBox = styled.View`
 const IconBox = styled.View`
   padding: 5px;
 `;
+
 const MenuTitle = styled.View`
   display: flex;
   flex-direction: row;
@@ -152,6 +135,7 @@ const AuthContainer = styled.View`
   border-bottom-color: ${theme.BORDER_COLOR};
   border-bottom-width: 0.3px;
 `;
+
 const LoginTitle = styled.Text`
   font-weight: bold;
   font-size: 16px;

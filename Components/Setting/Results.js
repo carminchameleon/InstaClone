@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { View, Text, TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { theme } from "../theme";
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import {AntDesign} from '@expo/vector-icons';
+import {theme} from '../../Styles/theme';
+import styled from 'styled-components';
 
 export default (props) => {
-  const { results } = props;
+  const {results} = props;
   return (
     <Container>
       <MenuContainer>
@@ -14,7 +14,7 @@ export default (props) => {
             <MenuTouchZone
               activeOpacity={0.6}
               underlayColor={theme.BORDER_COLOR}
-              onPress={() => alert("helllo")}
+              onPress={() => alert(`you clicked ${item}`)}
             >
               <MenuBox>
                 <MenuTitle>
@@ -39,6 +39,7 @@ const MenuContainer = styled.View`
 `;
 
 const MenuTouchZone = styled.TouchableOpacity``;
+
 const MenuBox = styled.View`
   width: 100%;
   padding: 7px 0;

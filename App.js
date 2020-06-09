@@ -1,11 +1,26 @@
 import React, {useState} from 'react';
 import {AppLoading} from 'expo';
+import {Asset} from 'expo-asset';
 import * as Font from 'expo-font';
-import {Ionicons} from '@expo/vector-icons';
-import {StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  EvilIcons,
+  FontAwesome,
+  MaterialIcons,
+  AntDesign,
+  Entypo,
+} from '@expo/vector-icons';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  fromModule,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import MainTabsScreen from './Navigation/Navigation';
-import {Asset} from 'expo-asset';
 import RootStackScreens from './Navigation/Navigation';
 import Login from './Screens/Login';
 
@@ -13,6 +28,7 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
 
   const cacheFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
+
   const cacheImages = (images) =>
     images.map((image) => {
       if (typeof image === 'string') {
@@ -21,9 +37,18 @@ export default function App() {
         return Asset.fromModule(image).downloadAsync();
       }
     });
+
   const LoadAssets = () => {
     const images = cacheImages([require('./assets/logo_text.png')]);
-    const fonts = cacheFonts([Ionicons.font]);
+    const fonts = cacheFonts([
+      Ionicons.font,
+      MaterialIcons.font,
+      MaterialCommunityIcons.font,
+      EvilIcons.font,
+      FontAwesome.font,
+      AntDesign.font,
+      Entypo.font,
+    ]);
     return Promise.all([...images, ...fonts]);
   };
 
@@ -44,11 +69,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+console.disableYellowBox = true;

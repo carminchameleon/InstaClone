@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TextInput,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Image, Text, TextInput, TouchableOpacity} from 'react-native';
+import {theme} from '../Styles/theme';
 import styled from 'styled-components';
-import {theme} from '../Components/theme';
+
 export default ({navigation}) => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+
+  const handleNavigation = () => {
+    setId('');
+    setPw('');
+    navigation.push('mainStack');
+  };
 
   return (
     <Container>
@@ -36,7 +36,12 @@ export default ({navigation}) => {
           <ForgetText>Forgot password?</ForgetText>
         </ForgetTouchZone>
 
-        <LoginButtonZone isFilled={id && pw}>
+        <LoginButtonZone
+          onPress={() =>
+            id && pw ? handleNavigation() : alert('입력을 완료해 주세요')
+          }
+          isFilled={id && pw}
+        >
           <LoginButton>Login</LoginButton>
         </LoginButtonZone>
 
@@ -49,7 +54,7 @@ export default ({navigation}) => {
           <FBLogoBox>
             <FBLogo source={require('../assets/Facebook.png')}></FBLogo>
           </FBLogoBox>
-          <FBText onPress={() => navigation.push('mainStack')}>
+          <FBText onPress={() => handleNavigation()}>
             Continue as Carminido
           </FBText>
         </FBBox>
@@ -107,8 +112,8 @@ const ForgetText = styled.Text`
 const LoginButtonZone = styled.TouchableOpacity`
   width: 100%;
   padding: 10px;
-background-color: ${(props) =>
-  props.isFilled ? '#3897f0' : 'rgb(138, 191, 245)'}
+  background-color: ${(props) =>
+    props.isFilled ? '#3897f0' : 'rgb(138, 191, 245)'};
   border: 0.5px solid ${theme.BORDER_COLOR};
   border-radius: 7px;
   margin-top: 5%;

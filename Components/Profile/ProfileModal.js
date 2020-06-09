@@ -4,12 +4,9 @@ import {
   Text,
   TouchableWithoutFeedback,
   TouchableHighlight,
+  TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/EvilIcons';
-import styled from 'styled-components';
-const {width, height} = Dimensions.get('screen');
-import {theme} from '../theme';
 import {
   AntDesign,
   FontAwesome,
@@ -17,8 +14,11 @@ import {
   Entypo,
   MaterialIcons,
 } from '@expo/vector-icons';
+import {theme} from '../../Styles/theme';
+import styled from 'styled-components';
 
-import {TouchableOpacity} from 'react-native-gesture-handler';
+const {width, height} = Dimensions.get('screen');
+
 export default (props) => {
   const {setModalVisible, navigation} = props;
 
@@ -111,7 +111,7 @@ const Container = styled.View`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   display: flex;
-  padding-top: 20px;
+  padding-top: 5px;
 `;
 
 const Wrapper = styled.View`

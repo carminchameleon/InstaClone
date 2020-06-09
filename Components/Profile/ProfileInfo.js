@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import styled from 'styled-components';
-import {theme} from '../theme';
+import {theme} from '../../Styles/theme';
 import ProfilePhotos from './ProfilePhotos';
 export default () => {
   return (

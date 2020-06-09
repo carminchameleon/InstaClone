@@ -8,7 +8,7 @@ import {
 } from '@expo/vector-icons';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {theme} from '../Components/theme';
+import {theme} from '../Styles/theme';
 import Feeds from '../Screens/Feeds';
 import Search from '../Screens/Search';
 import Upload from '../Screens/Upload';
@@ -16,6 +16,7 @@ import Activity from '../Screens/Activity';
 import Profile from '../Screens/Profile';
 import Settings from '../Screens/Settings';
 import Login from '../Screens/Login';
+
 const Tabs = createBottomTabNavigator();
 
 const MainTabsScreen = () => {
@@ -103,8 +104,6 @@ const MainTabsScreen = () => {
     </Tabs.Navigator>
   );
 };
-
-// export default MainTabsScreen;
 
 const Stacks = createStackNavigator();
 

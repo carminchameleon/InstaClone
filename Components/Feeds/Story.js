@@ -1,10 +1,8 @@
 import React from 'react';
 import {View, Text, FlatList, Image} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
+import {theme} from '../../Styles/theme';
 import styled from 'styled-components';
-import {theme} from '../theme';
-import Post from './Post';
-import {ScrollView} from 'react-native-gesture-handler';
 
 export default () => {
   const renderItem = ({item}) => {
@@ -74,6 +72,7 @@ const StoryImg = styled.Image.attrs({
   width: 60px;
   height: 60px;
   border-radius: 30px;
+  border: 3px solid white;
 `;
 
 const IDContainer = styled.View`

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import {
   View,
   TouchableWithoutFeedback,
@@ -10,21 +9,14 @@ import {
   ScrollView,
   Modal,
   TouchableOpacity,
-  Dimensions,
   TextInput,
 } from 'react-native';
-import {
-  AntDesign,
-  FontAwesome,
-  Ionicons,
-  Entypo,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import {theme} from '../Components/theme';
-const {width, height} = Dimensions.get('screen');
-import {SearchBar, withTheme} from 'react-native-elements';
+import {SearchBar} from 'react-native-elements';
 import Menu from '../Components/Setting/Menu';
 import Results from '../Components/Setting/Results';
+import {theme} from '../Styles/theme';
+import styled from 'styled-components';
+
 export default ({navigation}) => {
   const [value, onChangeText] = useState('');
   const [Typing, isTyping] = useState(false);
@@ -41,6 +33,17 @@ export default ({navigation}) => {
     setResults(searchResult);
   };
 
+  const checkPlatFrom = () => {
+    if (Platform.OS === 'ios') {
+      return {
+        width: '95%',
+        height: 30,
+        backgroundColor: `${theme.BORDER_COLOR}`,
+        borderRadius: 7,
+      };
+    }
+  };
+
   return (
     <Container>
       <SearchContainer>
@@ -49,12 +52,7 @@ export default ({navigation}) => {
           placeholder="Search"
           onChangeText={handleSearch}
           value={value}
-          containerStyle={{
-            width: '95%',
-            height: 30,
-            backgroundColor: `${theme.BORDER_COLOR}`,
-            borderRadius: 7,
-          }}
+          containerStyle={checkPlatFrom(Platform)}
           platform={Platform.OS === 'ios' ? 'ios' : 'android'}
         />
       </SearchContainer>
