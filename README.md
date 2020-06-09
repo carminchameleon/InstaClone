@@ -12,10 +12,10 @@
 
 이 프로젝트에서 사용된 기술은 다음과 같습니다.
 
-Language: JavaScript
-Library: React-Native,React-Navigation, Hooks, Axios, React-native-elements-SearchBar
-Styling: styled-components
-Project Setup: React Native Expo
+- Language: JavaScript
+- Library: React-Native,React-Navigation, Hooks, Axios, React-native-elements-SearchBar
+- Styling: styled-components
+- Project Setup: React Native Expo
 
 
 **구현 기능**
