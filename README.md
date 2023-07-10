@@ -1,13 +1,13 @@
-### Description
+## Description
 Clone project of instagram
 
-### 프로젝트 데모 영상
+## Project Demo Video
 [![Instagram Clone Project Demo](https://images.velog.io/images/carminchameleon/post/9dc96ea9-1605-44d4-aad7-5406955c0962/image.png
 )](https://www.youtube.com/watch?v=NesGhcEJ_zg)
 
 **Click to watch the demo video.**
 
-### Technologies Used
+## Technologies Used
 
 - Language: JavaScript
 - Library: React-Native,React-Navigation, Hooks, Axios, React-native-elements-SearchBar
@@ -38,12 +38,12 @@ Clone project of instagram
 - Menu search in settings screen
 - Detailed post view
 
-### Start Project
+## Start Project
 
 - "expo start"
 - The project is optimized for iPhone 11 and Pixel 3.
 
-### [Project Notion(In Korean)](https://www.notion.so/carminido/Instagram-Clone-a0d4055bc5b34f6eba82da8b408af045)
+## [Project Notion(In Korean)](https://www.notion.so/carminido/Instagram-Clone-a0d4055bc5b34f6eba82da8b408af045)
 You can find more detailed explanations and screenshots here.
 
 
